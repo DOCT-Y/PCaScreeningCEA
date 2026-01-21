@@ -26,7 +26,7 @@ state_c = MarkovState(node_name='state_c', init_prob=0, cost=0, utility=0)
 controller = MarkovController(total_cycles=total_cycles, count_method=count_method, discount_rate=discount_rate)
 
 k1 = ChanceNode(node_name='k1', trans_prob=ComplementProbability(), cost=20, utility=-0.1)
-k2 = ChanceNode(node_name='k1', trans_prob=ComplementProbability(), cost=30, utility=-0.2)
+k2 = ChanceNode(node_name='k2', trans_prob=ComplementProbability(), cost=30, utility=-0.2)
 
 a_to_a = StateTransition(node_name='a_to_a', trans_prob=ComplementProbability(), dst_state=state_a, cost=1)
 a_to_b = StateTransition(node_name='a_to_b', trans_prob=0.2, dst_state=state_b, cost=2, utility=-0.1)
@@ -116,3 +116,4 @@ print(variable_df.sum(axis=0))
 cost       1414.825414
 utility      11.809063
 '''
+
