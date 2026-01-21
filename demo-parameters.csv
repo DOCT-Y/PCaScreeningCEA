@@ -1,0 +1,29 @@
+﻿parameter_name,parameter_type,value
+cp_1,complement probability,-1
+cp_2,complement probability,-1
+cp_3,complement probability,-1
+cp_4,complement probability,-1
+p-trans_a_b,constant probability,0.2
+p-bkgd_c,time-varing probability,"0.0001,0.00009,0.00011,uniform;p-bkgd_c-36;p-bkgd_c-37;p-bkgd_c-38;p-bkgd_c-39;p-bkgd_c-40;p-bkgd_c-41;p-bkgd_c-42;p-bkgd_c-43;p-bkgd_c-44;p-bkgd_c-45;p-bkgd_c-46;p-bkgd_c-47;p-bkgd_c-48;p-bkgd_c-49;p-bkgd_c-50;p-bkgd_c-51;p-bkgd_c-52;p-bkgd_c-53;p-bkgd_c-54"
+p-trans_k1_c,constant probability,0.01
+p-trans_k2_a,constant probability,0.3
+p-bkgd_c-35,probability with range,"0.0001,0.00009,0.00011,uniform"
+p-bkgd_c-36,probability with range,"0.0002,0.00019,0.00021,uniform"
+p-bkgd_c-37,probability with range,"0.0003,0.00029,0.00031,uniform"
+p-bkgd_c-38,probability with range,"0.0004,0.00039,0.00041,uniform"
+p-bkgd_c-39,probability with range,"0.0005,0.00049,0.00051,uniform"
+p-bkgd_c-40,probability with range,"0.0006,0.00059,0.00061,uniform"
+p-bkgd_c-41,probability with range,"0.0007,0.00069,0.00071,uniform"
+p-bkgd_c-42,probability with range,"0.0008,0.00079,0.00081,uniform"
+p-bkgd_c-43,probability with range,"0.0009,0.00089,0.00091,uniform"
+p-bkgd_c-44,probability with range,"0.001,0.00099,0.00101,uniform"
+p-bkgd_c-45,probability with range,"0.0011,0.00109,0.00111,uniform"
+p-bkgd_c-46,probability with range,"0.0012,0.00119,0.00121,uniform"
+p-bkgd_c-47,probability with range,"0.0013,0.00129,0.00131,uniform"
+p-bkgd_c-48,probability with range,"0.0014,0.00139,0.00141,uniform"
+p-bkgd_c-49,probability with range,"0.0015,0.00149,0.00151,uniform"
+p-bkgd_c-50,probability with range,"0.0016,0.00159,0.00161,uniform"
+p-bkgd_c-51,probability with range,"0.0017,0.00169,0.00171,uniform"
+p-bkgd_c-52,probability with range,"0.0018,0.00179,0.00181,uniform"
+p-bkgd_c-53,probability with range,"0.0019,0.00189,0.00191,uniform"
+p-bkgd_c-54,probability with range,"0.002,0.00199,0.00201,uniform"

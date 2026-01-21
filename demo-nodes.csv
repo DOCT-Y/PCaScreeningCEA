@@ -1,0 +1,6 @@
+﻿node_name,parent,transition_probability,cost,utility
+state_a,__start__,1,50,1
+state_b,__start__,0,100,0.7
+state_c,__start__,0,0,0
+node_k1,state_b,cp_1,20,-0.1
+node_k2,node_k1,cp_2,30,-0.2

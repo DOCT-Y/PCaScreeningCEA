@@ -1,0 +1,9 @@
+﻿node_name,parent,dst_state,transition_probability,cost,utility
+trans_a_a,state_a,state_a,cp_3,1,0
+trans_a_b,state_a,state_b,p-trans_a_b,2,-0.1
+trans_a_c,state_a,state_c,p-bkgd_c,0,0
+trans_b_c,state_b,state_c,p-bkgd_c,0,0
+trans_k1_c,node_k1,state_c,p-trans_k1_c,0,0
+trans_k2_a,node_k2,state_a,p-trans_k2_a,6,-0.2
+trans_k2_b,node_k2,state_b,cp_4,7,-0.1
+trans_c_c,state_c,state_c,1,0,0
