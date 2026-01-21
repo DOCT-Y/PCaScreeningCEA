@@ -1,5 +1,3 @@
-import pandas as pd
-
 from core import (ProbabilityWithRange, TimeVaringProbability, ComplementProbability, 
                   MarkovController, MarkovState, ChanceNode, StateTransition)
 
@@ -116,4 +114,3 @@ print(variable_df.sum(axis=0))
 cost       1414.825414
 utility      11.809063
 '''
-
