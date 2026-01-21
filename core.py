@@ -73,7 +73,6 @@ class ComplementProbability(Probability):
         self._other_probs = [p for p in other_probs if p is not self]
 
     def value(self, time=None):
-        # print([p.value(time) for p in self._other_probs])
         return 1 - sum([p.value(time) for p in self._other_probs])
 
     def __repr__(self): 
@@ -330,48 +329,3 @@ class MarkovController(Node):
         for key, value in data.items():
             discounted_value = (value * prob) / discount_factor
             self.cycle_variables[key].append(discounted_value)
-    
-
-if __name__ == '__main__':
-    state_1 = MarkovState(node_name='state_1', init_prob=1, cost=100, utility=1.0)
-    state_2 = MarkovState(node_name='state_2', init_prob=0, cost=150, utility=0.6)
-    state_3 = MarkovState(node_name='state_3', init_prob=0, cost=0, utility=0)
-
-    transition_1_to_2 = StateTransition(node_name='transition_1_to_2', trans_prob=0.05, dst_state=state_2, cost=5000, utility=-0.1)
-    transition_1_to_3 = StateTransition(node_name='transition_1_to_3', trans_prob=0.005, dst_state=state_3, cost=0, utility=0)
-    transition_1_to_1 = StateTransition(node_name='transition_1_to_1', trans_prob=ComplementProbability(), dst_state=state_1, cost=200, utility=0)
-
-    transition_2_to_2 = StateTransition(node_name='transition_2_to_2', trans_prob=ComplementProbability(), dst_state=state_2, cost=50, utility=-0.05)
-    transition_2_to_3 = StateTransition(node_name='transition_2_to_3', trans_prob=0.1, dst_state=state_3, cost=0, utility=0)
-
-    transition_3_to_3 = StateTransition(node_name='transition_3_to_3', trans_prob=1, dst_state=state_3, cost=0, utility=0)
-
-    state_1.add_child(transition_1_to_1)
-    state_1.add_child(transition_1_to_2)
-    state_1.add_child(transition_1_to_3)
-
-    state_2.add_child(transition_2_to_2)
-    state_2.add_child(transition_2_to_3)
-
-    state_3.add_child(transition_3_to_3)
-
-    count_method = ['start', 'half', 'end'][1]
-    discount_rate = 0.03
-
-    controller = MarkovController(total_cycles=20, count_method=count_method, discount_rate=discount_rate)
-
-    controller.add_child(state_1)
-    controller.add_child(state_2)
-    controller.add_child(state_3)
-    controller.init_prob()
-
-    controller.verify()
-    print('model verified')
-    outputs = controller.run()
-
-    for output in outputs:
-        print(output)
-    '''
-    18  143.187436  0.280713
-    19  132.184167  0.259783
-    '''
