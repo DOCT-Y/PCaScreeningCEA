@@ -93,6 +93,13 @@ class Node:
             self.trans_prob = trans_prob
 
         self.variables = variables
+    
+    def reset(self):
+        if hasattr(self, 'reset_memory'):
+            self.reset_memory()
+        
+        for child in self.children:
+            child.reset()
 
     def set_controller(self, controller:'MarkovController'):
         self.controller = controller
@@ -179,6 +186,9 @@ class MarkovState(Node):
         super().__init__(node_name, init_prob, **variables)
         self.initial_prob = []
     
+    def reset_memory(self):
+        self.initial_prob = []
+
     def start(self, time, cycle_start_prob):
         if time == 0:
             self.initial_prob.append(cycle_start_prob)
@@ -206,6 +216,13 @@ class StateTransition(Node):
         self.cumulative_probs = []
         self.cumulative_variables = []
     
+    def reset(self):
+        return self.reset_memory()
+
+    def reset_memory(self):
+        self.cumulative_probs = []
+        self.cumulative_variables = []
+
     def forward(self, time, input_prob, **input_variables):
         if time == 0:
             self.cumulative_probs.append(0)
@@ -218,7 +235,7 @@ class StateTransition(Node):
         
         for k in list(input_variables.keys() | self.variables.keys()):
             output_variables[k] = input_variables.get(k, 0) + self.variables.get(k, 0) + destination.variables.get(k, 0)
-
+        
         self.notify_controller({'dst':destination.node_name, 'prob': self.cumulative_probs[time: time+2], **output_variables})
 
     def verify(self):
@@ -253,7 +270,7 @@ class MarkovController(Node):
         self.next_cycle_start_prob = defaultdict(list)
 
     def run(self):
-        self.reset_model()
+        self.reset()
         for state in self.children:
             self.next_cycle_start_prob[state.node_name] = state.trans_prob.value(0)
 
@@ -290,7 +307,7 @@ class MarkovController(Node):
 
         self.model_time += 1
     
-    def reset_model(self):
+    def reset_memory(self):
         self.model_time = 0
 
         self.total_probs.clear()
