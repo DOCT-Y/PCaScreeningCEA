@@ -184,6 +184,12 @@ class ChanceNode(Node):
 class MarkovState(Node):
     def __init__(self, node_name, init_prob:Probability=ProbabilityWithRange(1.0), **variables):
         super().__init__(node_name, init_prob, **variables)
+
+        if isinstance(init_prob, (float, int)):
+            self.init_dist_prob = ProbabilityWithRange(init_prob)
+        else:
+            self.init_dist_prob = init_prob
+
         self.initial_prob = []
     
     def reset_memory(self):
@@ -272,7 +278,7 @@ class MarkovController(Node):
     def run(self):
         self.reset()
         for state in self.children:
-            self.next_cycle_start_prob[state.node_name] = state.trans_prob.value(0)
+            self.next_cycle_start_prob[state.node_name] = state.init_dist_prob.value(0)
 
         for _ in range(self.total_cycles):
             self.start_one_cycle()
